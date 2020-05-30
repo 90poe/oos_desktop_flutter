@@ -1,0 +1,13 @@
+query CurrentFuelsByConsumerData($pagination: PaginationInput!) {
+    currentFuelsByConsumer {
+        consumer
+        fuel {
+            ...Fuel
+        }
+        __typename
+    }
+    fuels(pagination: $pagination) {
+        ...FuelList
+        __typename
+    }
+}

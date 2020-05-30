@@ -1,0 +1,3 @@
+mutation deleteFuel($id: ID!) {
+    deleteFuel(id: $id)
+}

@@ -1,0 +1,19 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - graphql/**
+      - oos-edge-schema.graphql
+    builders:
+      artemis:
+        options:
+          scalar_mapping:
+            - graphql_type: DateTime
+              custom_parser_import: 'package:oosdesktopflutter/helpers/artemis.dart'
+              dart_type: DateTime
+          fragments_glob: graphql/fragments/common.graphql
+          schema_mapping:
+            - schema: oos-edge-schema.graphql
+              queries_glob: graphql/*.graphql
+              output: lib/models/graphql/graphql_api.dart
+              naming_scheme: pathedWithFields

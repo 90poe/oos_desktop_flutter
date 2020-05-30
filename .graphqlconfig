@@ -1,0 +1,15 @@
+{
+  "name": "OOS Edge Schema",
+  "schemaPath": "oos-edge-schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default": {
+        "url": "https://my.drydock.studio/api/captain-reports-edge/query",
+        "headers": {
+          "Authorization": "Bearer c245958ca815a29657347676acfdf5fb7bc72786"
+        },
+        "introspect": true
+      }
+    }
+  }
+}

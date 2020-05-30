@@ -1,0 +1,20 @@
+fragment Fuel on Fuel {
+    dateCreated
+    dateDeleted
+    densityAt15CKGLTR
+    grade
+    id
+    lowerCalorificValueMJKG
+    status
+    sulphurPercent
+    temperatureC
+    type
+    __typename
+}
+fragment FuelList on FuelList {
+    totalCount
+    fuels {
+        ...Fuel
+    }
+    __typename
+}

@@ -1,0 +1,743 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+union EventUnion = Event | FuelEvent
+
+type AuxiliaryEnginePowerStatus {
+    averageLoadKW: FloatField!
+    designMCRKWH: FloatField!
+    energyOutKWH: FloatField!
+    engineLoadPercent: FloatField!
+    hoursRunLastReport: FloatField!
+    powerCounterNowKWH: FloatField!
+    powerCounterPreviousKWH: FloatField!
+}
+
+type ConsumptionData {
+    AE1: AuxiliaryEnginePowerStatus!
+    AE2: AuxiliaryEnginePowerStatus!
+    AE3: AuxiliaryEnginePowerStatus!
+    AE4: AuxiliaryEnginePowerStatus!
+    AEDailyFuelOilConsumption: FloatField!
+    AEFlowMeterFinishLTRS: FuelStatus!
+    AEFlowMeterStartLTRS: FuelStatus!
+    AEFlowMeterTemperatureC: FuelStatus!
+    AEROB: FloatField!
+    AESystemOil: LubeOilStatus!
+    AETotalFuelOilConsumption: FloatField!
+    AETotals: AuxiliaryEnginePowerStatus!
+    HFOConsumptionMT: FuelConsumptionByEngine!
+    IGGFlowMeterFinishLTRS: FuelStatus!
+    IGGFlowMeterStartLTRS: FuelStatus!
+    IGGFlowMeterTemperatureC: FuelStatus!
+    LSOConsumptionMT: FuelConsumptionByEngine!
+    MDOConsumptionMT: FuelConsumptionByEngine!
+    MECylinderOil: LubeOilStatus!
+    MEDailyFuelOilConsumption: FloatField!
+    MEFlowMeterFinishLTRS: FuelStatus!
+    MEFlowMeterStartLTRS: FuelStatus!
+    MEFlowMeterTemperatureC: FuelStatus!
+    MEROB: FloatField!
+    MERPM: PowerStatus!
+    MEShaftEnergyCounter: PowerStatus!
+    MESystemOil: LubeOilStatus!
+    METotalFuelOilConsumption: FloatField!
+    METurboChargerBlanked: StringField!
+    MGOConsumptionMT: FuelConsumptionByEngine!
+    ULSOConsumptionMT: FuelConsumptionByEngine!
+    autofilterDrainedFuelMT: FloatField!
+    averageConsumptionPerDayMT: FuelConsumptionByEngine!
+    boilerAndIncineratorFlowMeterFinishLTRS: FuelStatus!
+    boilerAndIncineratorFlowMeterStartLTRS: FuelStatus!
+    boilerAndIncineratorFlowMeterTemperatureC: FuelStatus!
+    bunkerDeliveredByBDNSinceLastFweMT: FuelStatus!
+    bunkerROBBySoundingMT: FuelStatus!
+    bunkerReceivedSinceLastStbyMT: FuelStatus!
+    chiefEngineersName: StringField!
+    completionStatus: CompletionStatus!
+    consumptionAutofilterDrainedFuelMT: FuelConsumptionByEngine!
+    dailyFreshWaterProduction: FloatField!
+    densityAt15CKGLTR: FuelStatus!
+    fuelOilConsumptionInvolvedInHeatingCargo: FuelOilConsumptionInvolvedInHeatingCargo!
+    fuelTransferredFromOverflowTankBackToStorageTankMT: FloatField!
+    lowerCalorificValueMJKG: FuelStatus!
+    manoeuvringHFOConsumptionMT: FuelConsumptionByEngine!
+    manoeuvringLSOConsumptionMT: FuelConsumptionByEngine!
+    manoeuvringMDOConsumptionMT: FuelConsumptionByEngine!
+    manoeuvringMGOConsumptionMT: FuelConsumptionByEngine!
+    manoeuvringTotalConsumptionMT: FuelConsumptionByEngine!
+    manoeuvringULSOConsumptionMT: FuelConsumptionByEngine!
+    overflowTankROBMT: FloatField!
+    sludgeBurnedAndWaterDrainPlusEvaporatedSinceLastReport: FloatField!
+    sludgeProducedSinceLastReport: FloatField!
+    sludgeROB: FloatField!
+    sulphurPercent: FuelStatus!
+    totalConsumptionCorrectedMT: FuelConsumptionByEngine!
+    totalConsumptionMT: FuelConsumptionByEngine!
+    unaccountedFuelDrainedIntoOverflowTankMT: FloatField!
+}
+
+type DateTimeField {
+    comment: String
+    systemValue: DateTime
+    userValue: DateTime
+}
+
+type Destination {
+    id: ID!
+    name: String!
+    type: DestinationType!
+}
+
+type DestinationList {
+    destinations: [Destination!]!
+    totalCount: Int!
+}
+
+type Event {
+    arrival: Destination
+    current: Destination
+    dateCreated: DateTime!
+    dateOccurred: DateTime!
+    departure: Destination
+    id: ID!
+    latitude: Float
+    longitude: Float
+    replacedEventId: ID
+    reportId: ID
+    source: EventSource!
+    status: EventStatus!
+    type: EventType!
+    validityStatus: EventValidityStatus!
+    vesselStatus: VesselStatus
+}
+
+type EventUnionList {
+    events: [EventUnion!]!
+    totalCount: Int!
+}
+
+type FloatField {
+    comment: String
+    systemValue: Float
+    userValue: Float
+}
+
+type Fuel {
+    dateCreated: DateTime!
+    dateDeleted: DateTime
+    densityAt15CKGLTR: Float!
+    grade: Float!
+    id: ID!
+    lowerCalorificValueMJKG: Float!
+    status: FuelDeletionStatus!
+    sulphurPercent: Float!
+    temperatureC: Float!
+    type: FuelType!
+}
+
+type FuelByConsumer {
+    consumer: FuelConsumer!
+    fuel: Fuel!
+}
+
+type FuelConsumptionByEngine {
+    AE: FloatField!
+    IGG: FloatField!
+    ME: FloatField!
+    boiler: FloatField!
+    total: FloatField!
+}
+
+type FuelEvent {
+    changeFrom: [FuelByConsumer!]!
+    changeTo: Fuel!
+    dateCreated: DateTime!
+    dateFinish: DateTime!
+    dateStart: DateTime!
+    fuelConsumers: [FuelConsumer!]!
+    id: ID!
+    isEditable: Boolean!
+    replacedEventId: ID
+    status: EventStatus!
+    validityStatus: EventValidityStatus!
+}
+
+type FuelList {
+    fuels: [Fuel!]!
+    totalCount: Int!
+}
+
+type FuelOilConsumptionInvolvedInHeatingCargo {
+    HFOT: FloatField!
+    LSOT: FloatField!
+    MDOT: FloatField!
+    MGOT: FloatField!
+    totalsT: FloatField!
+}
+
+type FuelStatus {
+    HFO: FloatField!
+    LSO: FloatField!
+    MDO: FloatField!
+    MGO: FloatField!
+    ULSO: FloatField!
+}
+
+type LubeOilStatus {
+    ROB: FloatField!
+    consumptionSinceLastReport: FloatField!
+}
+
+type Mutation {
+    createEvent(eventData: EventCreateInput!): Event!
+    createFuel(fuelData: FuelInput!): Fuel!
+    createFuelEvent(fuelEventData: FuelEventCreateInput!): FuelEvent!
+    createReport(reportData: ReportInput!): Report!
+    deleteFuel(id: ID!): ID!
+    sendReport(id: ID!): Report!
+    updateEvent(eventData: EventUpdateInput!, id: ID!): Event!
+    updateFuelEvent(fuelEventData: FuelEventUpdateInput!, id: ID!): FuelEvent!
+    updateReport(id: ID!, reportData: ReportInput!): Report!
+    updateReportConsumptionData(consumptionData: ConsumptionDataInput!, id: ID!): Report!
+    updateReportNavigationData(id: ID!, navigationData: NavigationDataInput!): Report!
+}
+
+type NavigationData {
+    ETA: DateTimeField!
+    TEU: FloatField!
+    actualArrivalAtBerth: DateTimeField!
+    airTemperature: FloatField!
+    averageSpeedOvergroundKN: FloatField!
+    averageSpeedThroughWaterKN: FloatField!
+    averageVoyageSpeedKN: FloatField!
+    ballastOnboardMT: FloatField!
+    barometer: FloatField!
+    bendingMomentPercent: FloatField!
+    cargoDensityTM3: FloatField!
+    cargoTotalT: FloatField!
+    cargoVolumeM3: FloatField!
+    cloudCover: StringField!
+    completionStatus: CompletionStatus!
+    condition: StringField!
+    course: FloatField!
+    current: FloatField!
+    currentDirection: StringField!
+    dailyFreshWaterConsumption: FloatField!
+    deadweightMT: FloatField!
+    displacement: FloatField!
+    distanceOverGroundNM: FloatField!
+    distanceThroughWaterNM: FloatField!
+    draftAftM: FloatField!
+    draftForwardM: FloatField!
+    draftMeanM: FloatField!
+    estimatedArrivalAtBerth: DateTimeField!
+    estimatedDepartureFromBerth: DateTimeField!
+    hoursOfSailing: FloatField!
+    latitude: FloatField!
+    longitude: FloatField!
+    mastersName: StringField!
+    metacentricHeightM: FloatField!
+    propellerImmersionPercent: FloatField!
+    remainingDistanceNM: FloatField!
+    remainingFreshWater: FloatField!
+    rollingPeriod: FloatField!
+    seaState: FloatField!
+    seaStateDirection: StringField!
+    seaTemperature: FloatField!
+    shearingForcePercent: FloatField!
+    slipPercent: FloatField!
+    swell: FloatField!
+    swellDirection: StringField!
+    torsionMomentPercent: FloatField!
+    totalCargoUnitsMT: FloatField!
+    totalDistanceNM: FloatField!
+    totalFreshWaterConsumption: FloatField!
+    totalHoursOfSailing: FloatField!
+    trim: FloatField!
+    visibility: FloatField!
+    voyageInstructions: VoyageInstructionsField!
+    voyageInstructionsValue: FloatField!
+    windBeaufort: FloatField!
+    windDirection: StringField!
+}
+
+type PositionTime {
+    UTC: DateTime!
+    lat: Float
+    local: DateTime!
+    lon: Float
+    timeZoneName: String!
+    timeZoneNameShort: String!
+    timeZoneOffset: Int!
+}
+
+type PowerStatus {
+    averages: FloatField!
+    differences: FloatField!
+    previousReading: FloatField!
+    thisReading: FloatField!
+}
+
+type Query {
+    currentFuelsByConsumer: [FuelByConsumer!]!
+    events(pagination: PaginationInput!): EventUnionList!
+    fuels(pagination: PaginationInput!): FuelList!
+    getFuelEventsForReport(id: ID!): [FuelEvent!]!
+    getInProgressReportList: [Report!]!
+    getReport(id: ID!): Report
+    getReportDefaults: ReportDefaults!
+    getSentReportsList: [Report!]!
+    positionTime: PositionTime!
+    reportsByVoyage(pagination: PaginationInput!, voyageId: ID!): ReportList!
+    searchDestinations(pagination: PaginationInput!, startsWith: Boolean!, term: String!, types: [DestinationType!]): DestinationList!
+    suggestedDestinations(pagination: PaginationInput!): DestinationList!
+    vesselInfo: VesselInfo!
+    voyageInfo: VoyageInfo!
+    voyages(pagination: PaginationInput!): VoyageList!
+}
+
+type Report {
+    arrival: Destination!
+    consumptionData: ConsumptionData!
+    dateCreated: DateTime!
+    dateFrom: DateTime!
+    dateSent: DateTime
+    dateTo: DateTime!
+    departure: Destination!
+    id: ID!
+    navigationData: NavigationData!
+    status: ReportStatus!
+    type: ReportType!
+    voyageId: ID
+    voyageNumber: String!
+}
+
+type ReportDefaults {
+    arrival: Destination
+    dateFrom: DateTime
+    dateTo: DateTime
+    departure: Destination
+    types: [ReportType!]!
+    voyageNumber: String
+}
+
+type ReportList {
+    reports: [Report!]!
+    totalCount: Int!
+}
+
+type StringField {
+    comment: String
+    systemValue: String
+    userValue: String
+}
+
+type VesselInfo {
+    accountId: ID!
+    id: ID!
+    imo: String!
+    name: String!
+    type: VesselType!
+}
+
+type Voyage {
+    arrival: Destination!
+    dateFrom: DateTime!
+    dateTo: DateTime
+    departure: Destination!
+    id: ID!
+    status: VoyageStatus!
+    voyageNumber: String!
+}
+
+type VoyageDetails {
+    numberOfReports: Int!
+    voyage: Voyage!
+}
+
+type VoyageInfo {
+    vesselStatus: VesselStatus
+    voyageNumber: String
+}
+
+type VoyageInstructionsField {
+    comment: String
+    systemValue: VoyageInstructions
+    userValue: VoyageInstructions
+}
+
+type VoyageList {
+    totalCount: Int!
+    voyages: [VoyageDetails!]!
+}
+
+enum CompletionStatus {
+    completed
+    new
+    saved
+    unknown
+}
+
+enum DestinationType {
+    offshoreBunker
+    port
+    region
+    unknown
+}
+
+enum EventSource {
+    manual
+    report
+    unknown
+}
+
+enum EventStatus {
+    pending
+    sent
+    unknown
+}
+
+enum EventType {
+    BOSP
+    EOSP
+    FWE
+    NOON
+    PNOON
+    STBY
+    actualTimeOfBerthing
+    actualTimeOfDeparture
+    midPassageStart
+    midPassageStopPlanned
+    midPassageStopUnplanned
+    pilotDisembarked
+    pilotOnBoard
+    unknown
+    vesselStatusChange
+}
+
+enum EventValidityStatus {
+    replaced
+    unknown
+    valid
+}
+
+enum FuelConsumer {
+    AuxiliaryEngine
+    Boiler
+    MainEngine
+    unknown
+}
+
+enum FuelDeletionStatus {
+    active
+    deleted
+    unknown
+}
+
+enum FuelType {
+    HSFO
+    MDO
+    MGO
+    ULSFO
+    VLSFO
+    unknown
+}
+
+enum ReportStatus {
+    inProgress
+    sent
+}
+
+enum ReportType {
+    BOSP
+    EOSP
+    FWE
+    NOON
+    PNOON
+    STBY
+}
+
+enum VesselStatus {
+    anchored
+    drifting
+    stopped
+    underway
+    unknown
+}
+
+enum VesselType {
+    LPG
+    PCTC
+    bulk
+    chemical
+    container
+    oilCrude
+    oilProduct
+    oreCarrier
+    unknown
+}
+
+enum VoyageInstructions {
+    ECOPower
+    constantPower
+    constantRPM
+    constantSpeed
+    superEcoPower
+}
+
+enum VoyageStatus {
+    finished
+    inProgress
+}
+
+input AuxiliaryEnginePowerStatusInput {
+    averageLoadKW: FloatFieldInput!
+    designMCRKWH: FloatFieldInput!
+    energyOutKWH: FloatFieldInput!
+    engineLoadPercent: FloatFieldInput!
+    hoursRunLastReport: FloatFieldInput!
+    powerCounterNowKWH: FloatFieldInput!
+    powerCounterPreviousKWH: FloatFieldInput!
+}
+
+input ConsumptionDataInput {
+    AE1: AuxiliaryEnginePowerStatusInput!
+    AE2: AuxiliaryEnginePowerStatusInput!
+    AE3: AuxiliaryEnginePowerStatusInput!
+    AE4: AuxiliaryEnginePowerStatusInput!
+    AEDailyFuelOilConsumption: FloatFieldInput!
+    AEFlowMeterFinishLTRS: FuelStatusInput!
+    AEFlowMeterStartLTRS: FuelStatusInput!
+    AEFlowMeterTemperatureC: FuelStatusInput!
+    AEROB: FloatFieldInput!
+    AESystemOil: LubeOilStatusInput!
+    AETotalFuelOilConsumption: FloatFieldInput!
+    AETotals: AuxiliaryEnginePowerStatusInput!
+    HFOConsumptionMT: FuelConsumptionByEngineInput!
+    IGGFlowMeterFinishLTRS: FuelStatusInput!
+    IGGFlowMeterStartLTRS: FuelStatusInput!
+    IGGFlowMeterTemperatureC: FuelStatusInput!
+    LSOConsumptionMT: FuelConsumptionByEngineInput!
+    MDOConsumptionMT: FuelConsumptionByEngineInput!
+    MECylinderOil: LubeOilStatusInput!
+    MEDailyFuelOilConsumption: FloatFieldInput!
+    MEFlowMeterFinishLTRS: FuelStatusInput!
+    MEFlowMeterStartLTRS: FuelStatusInput!
+    MEFlowMeterTemperatureC: FuelStatusInput!
+    MEROB: FloatFieldInput!
+    MERPM: PowerStatusInput!
+    MEShaftEnergyCounter: PowerStatusInput!
+    MESystemOil: LubeOilStatusInput!
+    METotalFuelOilConsumption: FloatFieldInput!
+    METurboChargerBlanked: StringFieldInput!
+    MGOConsumptionMT: FuelConsumptionByEngineInput!
+    ULSOConsumptionMT: FuelConsumptionByEngineInput!
+    autofilterDrainedFuelMT: FloatFieldInput!
+    averageConsumptionPerDayMT: FuelConsumptionByEngineInput!
+    boilerAndIncineratorFlowMeterFinishLTRS: FuelStatusInput!
+    boilerAndIncineratorFlowMeterStartLTRS: FuelStatusInput!
+    boilerAndIncineratorFlowMeterTemperatureC: FuelStatusInput!
+    bunkerDeliveredByBDNSinceLastFweMT: FuelStatusInput!
+    bunkerROBBySoundingMT: FuelStatusInput!
+    bunkerReceivedSinceLastStbyMT: FuelStatusInput!
+    chiefEngineersName: StringFieldInput!
+    completionStatus: CompletionStatus!
+    consumptionAutofilterDrainedFuelMT: FuelConsumptionByEngineInput!
+    dailyFreshWaterProduction: FloatFieldInput!
+    densityAt15CKGLTR: FuelStatusInput!
+    fuelOilConsumptionInvolvedInHeatingCargo: FuelOilConsumptionInvolvedInHeatingCargoInput!
+    fuelTransferredFromOverflowTankBackToStorageTankMT: FloatFieldInput!
+    lowerCalorificValueMJKG: FuelStatusInput!
+    manoeuvringHFOConsumptionMT: FuelConsumptionByEngineInput!
+    manoeuvringLSOConsumptionMT: FuelConsumptionByEngineInput!
+    manoeuvringMDOConsumptionMT: FuelConsumptionByEngineInput!
+    manoeuvringMGOConsumptionMT: FuelConsumptionByEngineInput!
+    manoeuvringTotalConsumptionMT: FuelConsumptionByEngineInput!
+    manoeuvringULSOConsumptionMT: FuelConsumptionByEngineInput!
+    overflowTankROBMT: FloatFieldInput!
+    sludgeBurnedAndWaterDrainPlusEvaporatedSinceLastReport: FloatFieldInput!
+    sludgeProducedSinceLastReport: FloatFieldInput!
+    sludgeROB: FloatFieldInput!
+    sulphurPercent: FuelStatusInput!
+    totalConsumptionCorrectedMT: FuelConsumptionByEngineInput!
+    totalConsumptionMT: FuelConsumptionByEngineInput!
+    unaccountedFuelDrainedIntoOverflowTankMT: FloatFieldInput!
+}
+
+input DateTimeFieldInput {
+    comment: String
+    systemValue: DateTime
+    userValue: DateTime
+}
+
+input DestinationInput {
+    id: ID!
+    name: String!
+    type: DestinationType!
+}
+
+input EventCreateInput {
+    dateOccurred: DateTime
+    type: EventType!
+    vesselStatus: VesselStatus
+}
+
+input EventUpdateInput {
+    dateOccurred: DateTime!
+}
+
+input FloatFieldInput {
+    comment: String
+    systemValue: Float
+    userValue: Float
+}
+
+input FuelConsumptionByEngineInput {
+    AE: FloatFieldInput!
+    IGG: FloatFieldInput!
+    ME: FloatFieldInput!
+    boiler: FloatFieldInput!
+    total: FloatFieldInput!
+}
+
+input FuelEventCreateInput {
+    changeTo: ID!
+    dateFinish: DateTime!
+    dateStart: DateTime!
+    fuelConsumers: [FuelConsumer!]!
+}
+
+input FuelEventUpdateInput {
+    dateFinish: DateTime!
+    dateStart: DateTime!
+}
+
+input FuelInput {
+    densityAt15CKGLTR: Float!
+    grade: Float!
+    lowerCalorificValueMJKG: Float!
+    sulphurPercent: Float!
+    temperatureC: Float!
+    type: FuelType!
+}
+
+input FuelOilConsumptionInvolvedInHeatingCargoInput {
+    HFOT: FloatFieldInput!
+    LSOT: FloatFieldInput!
+    MDOT: FloatFieldInput!
+    MGOT: FloatFieldInput!
+    totalsT: FloatFieldInput!
+}
+
+input FuelStatusInput {
+    HFO: FloatFieldInput!
+    LSO: FloatFieldInput!
+    MDO: FloatFieldInput!
+    MGO: FloatFieldInput!
+    ULSO: FloatFieldInput!
+}
+
+input LubeOilStatusInput {
+    ROB: FloatFieldInput!
+    consumptionSinceLastReport: FloatFieldInput!
+}
+
+input NavigationDataInput {
+    ETA: DateTimeFieldInput!
+    TEU: FloatFieldInput!
+    actualArrivalAtBerth: DateTimeFieldInput!
+    airTemperature: FloatFieldInput!
+    averageSpeedOvergroundKN: FloatFieldInput!
+    averageSpeedThroughWaterKN: FloatFieldInput!
+    averageVoyageSpeedKN: FloatFieldInput!
+    ballastOnboardMT: FloatFieldInput!
+    barometer: FloatFieldInput!
+    bendingMomentPercent: FloatFieldInput!
+    cargoDensityTM3: FloatFieldInput!
+    cargoTotalT: FloatFieldInput!
+    cargoVolumeM3: FloatFieldInput!
+    cloudCover: StringFieldInput!
+    completionStatus: CompletionStatus!
+    condition: StringFieldInput!
+    course: FloatFieldInput!
+    current: FloatFieldInput!
+    currentDirection: StringFieldInput!
+    dailyFreshWaterConsumption: FloatFieldInput!
+    deadweightMT: FloatFieldInput!
+    displacement: FloatFieldInput!
+    distanceOverGroundNM: FloatFieldInput!
+    distanceThroughWaterNM: FloatFieldInput!
+    draftAftM: FloatFieldInput!
+    draftForwardM: FloatFieldInput!
+    draftMeanM: FloatFieldInput!
+    estimatedArrivalAtBerth: DateTimeFieldInput!
+    estimatedDepartureFromBerth: DateTimeFieldInput!
+    hoursOfSailing: FloatFieldInput!
+    latitude: FloatFieldInput!
+    longitude: FloatFieldInput!
+    mastersName: StringFieldInput!
+    metacentricHeightM: FloatFieldInput!
+    propellerImmersionPercent: FloatFieldInput!
+    remainingDistanceNM: FloatFieldInput!
+    remainingFreshWater: FloatFieldInput!
+    rollingPeriod: FloatFieldInput!
+    seaState: FloatFieldInput!
+    seaStateDirection: StringFieldInput!
+    seaTemperature: FloatFieldInput!
+    shearingForcePercent: FloatFieldInput!
+    slipPercent: FloatFieldInput!
+    swell: FloatFieldInput!
+    swellDirection: StringFieldInput!
+    torsionMomentPercent: FloatFieldInput!
+    totalCargoUnitsMT: FloatFieldInput!
+    totalDistanceNM: FloatFieldInput!
+    totalFreshWaterConsumption: FloatFieldInput!
+    totalHoursOfSailing: FloatFieldInput!
+    trim: FloatFieldInput!
+    visibility: FloatFieldInput!
+    voyageInstructions: VoyageInstructionsFieldInput!
+    voyageInstructionsValue: FloatFieldInput!
+    windBeaufort: FloatFieldInput!
+    windDirection: StringFieldInput!
+}
+
+input PaginationInput {
+    limit: Int!
+    offset: Int!
+}
+
+input PowerStatusInput {
+    averages: FloatFieldInput!
+    differences: FloatFieldInput!
+    previousReading: FloatFieldInput!
+    thisReading: FloatFieldInput!
+}
+
+input ReportInput {
+    arrival: DestinationInput!
+    dateFrom: DateTime!
+    dateTo: DateTime!
+    departure: DestinationInput!
+    type: ReportType!
+    voyageNumber: String!
+}
+
+input StringFieldInput {
+    comment: String
+    systemValue: String
+    userValue: String
+}
+
+input VoyageInstructionsFieldInput {
+    comment: String
+    systemValue: VoyageInstructions
+    userValue: VoyageInstructions
+}
+
+
+scalar DateTime
