@@ -1,0 +1,19 @@
+#include: package:effective_dart/analysis_options.yaml
+linter:
+  rules:
+    close_sink: false
+
+analyzer:
+  exclude: [build/**, lib/models/graphql/**, lib/models/*.g.dart]
+  enable-experiment:
+    - extension-methods
+#  strong-mode:
+#    implicit-casts: false
+#    implicit-dynamic: false
+  errors:
+    # treat missing required parameters as a warning (not a hint)
+    missing_required_param: warning
+    # treat missing returns as a warning (not a hint)
+    missing_return: warning
+    # allow having TODOs in the code
+    todo: ignore

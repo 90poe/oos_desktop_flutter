@@ -6,10 +6,9 @@ part of 'graphql_api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel
-    _$CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$FuelFromJson(
-        Map<String, dynamic> json) {
-  return CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel()
+CreateFuel$Mutation$CreateFuel _$CreateFuel$Mutation$CreateFuelFromJson(
+    Map<String, dynamic> json) {
+  return CreateFuel$Mutation$CreateFuel()
     ..dateCreated =
         fromGraphQLDateTimeToDartDateTime(json['dateCreated'] as String)
     ..dateDeleted =
@@ -28,25 +27,21 @@ CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel
     ..$$typename = json['__typename'] as String;
 }
 
-Map<String, dynamic>
-    _$CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$FuelToJson(
-            CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel
-                instance) =>
-        <String, dynamic>{
-          'dateCreated':
-              fromDartDateTimeToGraphQLDateTime(instance.dateCreated),
-          'dateDeleted':
-              fromDartDateTimeToGraphQLDateTime(instance.dateDeleted),
-          'densityAt15CKGLTR': instance.densityAt15CKGLTR,
-          'grade': instance.grade,
-          'id': instance.id,
-          'lowerCalorificValueMJKG': instance.lowerCalorificValueMJKG,
-          'status': _$FuelDeletionStatusEnumMap[instance.status],
-          'sulphurPercent': instance.sulphurPercent,
-          'temperatureC': instance.temperatureC,
-          'type': _$FuelTypeEnumMap[instance.type],
-          '__typename': instance.$$typename,
-        };
+Map<String, dynamic> _$CreateFuel$Mutation$CreateFuelToJson(
+        CreateFuel$Mutation$CreateFuel instance) =>
+    <String, dynamic>{
+      'dateCreated': fromDartDateTimeToGraphQLDateTime(instance.dateCreated),
+      'dateDeleted': fromDartDateTimeToGraphQLDateTime(instance.dateDeleted),
+      'densityAt15CKGLTR': instance.densityAt15CKGLTR,
+      'grade': instance.grade,
+      'id': instance.id,
+      'lowerCalorificValueMJKG': instance.lowerCalorificValueMJKG,
+      'status': _$FuelDeletionStatusEnumMap[instance.status],
+      'sulphurPercent': instance.sulphurPercent,
+      'temperatureC': instance.temperatureC,
+      'type': _$FuelTypeEnumMap[instance.type],
+      '__typename': instance.$$typename,
+    };
 
 T _$enumDecode<T>(
   Map<T, dynamic> enumValues,
@@ -96,6 +91,84 @@ const _$FuelTypeEnumMap = {
   FuelType.unknown: 'unknown',
   FuelType.artemisUnknown: 'ARTEMIS_UNKNOWN',
 };
+
+CreateFuel$Mutation _$CreateFuel$MutationFromJson(Map<String, dynamic> json) {
+  return CreateFuel$Mutation()
+    ..createFuel = json['createFuel'] == null
+        ? null
+        : CreateFuel$Mutation$CreateFuel.fromJson(
+            json['createFuel'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$CreateFuel$MutationToJson(
+        CreateFuel$Mutation instance) =>
+    <String, dynamic>{
+      'createFuel': instance.createFuel?.toJson(),
+    };
+
+FuelInput _$FuelInputFromJson(Map<String, dynamic> json) {
+  return FuelInput(
+    densityAt15CKGLTR: (json['densityAt15CKGLTR'] as num)?.toDouble(),
+    grade: (json['grade'] as num)?.toDouble(),
+    lowerCalorificValueMJKG:
+        (json['lowerCalorificValueMJKG'] as num)?.toDouble(),
+    sulphurPercent: (json['sulphurPercent'] as num)?.toDouble(),
+    temperatureC: (json['temperatureC'] as num)?.toDouble(),
+    type: _$enumDecodeNullable(_$FuelTypeEnumMap, json['type'],
+        unknownValue: FuelType.artemisUnknown),
+  );
+}
+
+Map<String, dynamic> _$FuelInputToJson(FuelInput instance) => <String, dynamic>{
+      'densityAt15CKGLTR': instance.densityAt15CKGLTR,
+      'grade': instance.grade,
+      'lowerCalorificValueMJKG': instance.lowerCalorificValueMJKG,
+      'sulphurPercent': instance.sulphurPercent,
+      'temperatureC': instance.temperatureC,
+      'type': _$FuelTypeEnumMap[instance.type],
+    };
+
+CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel
+    _$CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$FuelFromJson(
+        Map<String, dynamic> json) {
+  return CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel()
+    ..dateCreated =
+        fromGraphQLDateTimeToDartDateTime(json['dateCreated'] as String)
+    ..dateDeleted =
+        fromGraphQLDateTimeToDartDateTime(json['dateDeleted'] as String)
+    ..densityAt15CKGLTR = (json['densityAt15CKGLTR'] as num)?.toDouble()
+    ..grade = (json['grade'] as num)?.toDouble()
+    ..id = json['id'] as String
+    ..lowerCalorificValueMJKG =
+        (json['lowerCalorificValueMJKG'] as num)?.toDouble()
+    ..status = _$enumDecodeNullable(_$FuelDeletionStatusEnumMap, json['status'],
+        unknownValue: FuelDeletionStatus.artemisUnknown)
+    ..sulphurPercent = (json['sulphurPercent'] as num)?.toDouble()
+    ..temperatureC = (json['temperatureC'] as num)?.toDouble()
+    ..type = _$enumDecodeNullable(_$FuelTypeEnumMap, json['type'],
+        unknownValue: FuelType.artemisUnknown)
+    ..$$typename = json['__typename'] as String;
+}
+
+Map<String, dynamic>
+    _$CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$FuelToJson(
+            CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel
+                instance) =>
+        <String, dynamic>{
+          'dateCreated':
+              fromDartDateTimeToGraphQLDateTime(instance.dateCreated),
+          'dateDeleted':
+              fromDartDateTimeToGraphQLDateTime(instance.dateDeleted),
+          'densityAt15CKGLTR': instance.densityAt15CKGLTR,
+          'grade': instance.grade,
+          'id': instance.id,
+          'lowerCalorificValueMJKG': instance.lowerCalorificValueMJKG,
+          'status': _$FuelDeletionStatusEnumMap[instance.status],
+          'sulphurPercent': instance.sulphurPercent,
+          'temperatureC': instance.temperatureC,
+          'type': _$FuelTypeEnumMap[instance.type],
+          '__typename': instance.$$typename,
+        };
 
 CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer
     _$CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumerFromJson(
@@ -228,6 +301,20 @@ Map<String, dynamic> _$DeleteFuel$MutationToJson(
         DeleteFuel$Mutation instance) =>
     <String, dynamic>{
       'deleteFuel': instance.deleteFuel,
+    };
+
+CreateFuelArguments _$CreateFuelArgumentsFromJson(Map<String, dynamic> json) {
+  return CreateFuelArguments(
+    fuelData: json['fuelData'] == null
+        ? null
+        : FuelInput.fromJson(json['fuelData'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CreateFuelArgumentsToJson(
+        CreateFuelArguments instance) =>
+    <String, dynamic>{
+      'fuelData': instance.fuelData?.toJson(),
     };
 
 CurrentFuelsByConsumerDataArguments

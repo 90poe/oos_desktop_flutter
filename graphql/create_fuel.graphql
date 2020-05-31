@@ -1,0 +1,5 @@
+mutation createFuel($fuelData: FuelInput!) {
+    createFuel(fuelData: $fuelData) {
+        ...Fuel
+    }
+}

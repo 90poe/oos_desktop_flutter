@@ -42,6 +42,82 @@ mixin FuelListMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class CreateFuel$Mutation$CreateFuel with EquatableMixin, FuelMixin {
+  CreateFuel$Mutation$CreateFuel();
+
+  factory CreateFuel$Mutation$CreateFuel.fromJson(Map<String, dynamic> json) =>
+      _$CreateFuel$Mutation$CreateFuelFromJson(json);
+
+  @override
+  List<Object> get props => [
+        dateCreated,
+        dateDeleted,
+        densityAt15CKGLTR,
+        grade,
+        id,
+        lowerCalorificValueMJKG,
+        status,
+        sulphurPercent,
+        temperatureC,
+        type,
+        $$typename
+      ];
+  Map<String, dynamic> toJson() => _$CreateFuel$Mutation$CreateFuelToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateFuel$Mutation with EquatableMixin {
+  CreateFuel$Mutation();
+
+  factory CreateFuel$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$CreateFuel$MutationFromJson(json);
+
+  CreateFuel$Mutation$CreateFuel createFuel;
+
+  @override
+  List<Object> get props => [createFuel];
+  Map<String, dynamic> toJson() => _$CreateFuel$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FuelInput with EquatableMixin {
+  FuelInput(
+      {@required this.densityAt15CKGLTR,
+      @required this.grade,
+      @required this.lowerCalorificValueMJKG,
+      @required this.sulphurPercent,
+      @required this.temperatureC,
+      @required this.type});
+
+  factory FuelInput.fromJson(Map<String, dynamic> json) =>
+      _$FuelInputFromJson(json);
+
+  double densityAt15CKGLTR;
+
+  double grade;
+
+  double lowerCalorificValueMJKG;
+
+  double sulphurPercent;
+
+  double temperatureC;
+
+  @JsonKey(unknownEnumValue: FuelType.artemisUnknown)
+  FuelType type;
+
+  @override
+  List<Object> get props => [
+        densityAt15CKGLTR,
+        grade,
+        lowerCalorificValueMJKG,
+        sulphurPercent,
+        temperatureC,
+        type
+      ];
+  Map<String, dynamic> toJson() => _$FuelInputToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel
     with EquatableMixin, FuelMixin {
   CurrentFuelsByConsumerData$Query$CurrentFuelsByConsumer$Fuel();
@@ -186,18 +262,6 @@ class DeleteFuel$Mutation with EquatableMixin {
   Map<String, dynamic> toJson() => _$DeleteFuel$MutationToJson(this);
 }
 
-enum FuelConsumer {
-  @JsonValue("AuxiliaryEngine")
-  auxiliaryEngine,
-  @JsonValue("Boiler")
-  boiler,
-  @JsonValue("MainEngine")
-  mainEngine,
-  @JsonValue("unknown")
-  unknown,
-  @JsonValue("ARTEMIS_UNKNOWN")
-  artemisUnknown,
-}
 enum FuelDeletionStatus {
   @JsonValue("active")
   active,
@@ -223,6 +287,153 @@ enum FuelType {
   unknown,
   @JsonValue("ARTEMIS_UNKNOWN")
   artemisUnknown,
+}
+enum FuelConsumer {
+  @JsonValue("AuxiliaryEngine")
+  auxiliaryEngine,
+  @JsonValue("Boiler")
+  boiler,
+  @JsonValue("MainEngine")
+  mainEngine,
+  @JsonValue("unknown")
+  unknown,
+  @JsonValue("ARTEMIS_UNKNOWN")
+  artemisUnknown,
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateFuelArguments extends JsonSerializable with EquatableMixin {
+  CreateFuelArguments({@required this.fuelData});
+
+  factory CreateFuelArguments.fromJson(Map<String, dynamic> json) =>
+      _$CreateFuelArgumentsFromJson(json);
+
+  final FuelInput fuelData;
+
+  @override
+  List<Object> get props => [fuelData];
+  Map<String, dynamic> toJson() => _$CreateFuelArgumentsToJson(this);
+}
+
+class CreateFuelMutation
+    extends GraphQLQuery<CreateFuel$Mutation, CreateFuelArguments> {
+  CreateFuelMutation({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.mutation,
+        name: NameNode(value: 'createFuel'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'fuelData')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'FuelInput'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'createFuel'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'fuelData'),
+                    value: VariableNode(name: NameNode(value: 'fuelData')))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'Fuel'), directives: [])
+              ]))
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'Fuel'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(name: NameNode(value: 'Fuel'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'dateCreated'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'dateDeleted'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'densityAt15CKGLTR'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'grade'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'lowerCalorificValueMJKG'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'status'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'sulphurPercent'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'temperatureC'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'type'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'createFuel';
+
+  @override
+  final CreateFuelArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  CreateFuel$Mutation parse(Map<String, dynamic> json) =>
+      CreateFuel$Mutation.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
